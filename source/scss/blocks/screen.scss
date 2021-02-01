@@ -19,6 +19,10 @@
   }
 }
 
+.screen--intro .intro__message {
+  animation: showInfo 1.2s forwards;
+}
+
 .screen__wrapper {
   @include container;
   position: relative;
@@ -353,4 +357,16 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+@keyframes showInfo {
+  from {
+    transform: translateY(32px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
