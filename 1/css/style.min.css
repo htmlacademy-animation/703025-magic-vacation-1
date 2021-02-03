@@ -1290,6 +1290,7 @@ img {
 .form {
   position: relative;
   display: flex;
+  justify-content: flex-end;
   align-items: center; }
 
 .form__label {
@@ -1319,7 +1320,6 @@ img {
   margin-right: 3rem;
   padding: 0 5.6rem;
   height: 6rem;
-  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -1327,8 +1327,7 @@ img {
   color: #5f458c;
   border: 0;
   border-radius: 3rem;
-  outline: none;
-  animation: showField 1s forwards; }
+  outline: none; }
   .form__field:focus {
     border: 1px solid #a67ee5; }
   @media (min-width: 2000px) {
@@ -1357,46 +1356,60 @@ img {
       height: 4rem;
       font-size: 1.6rem; } }
 
-.form__button {
-  flex-grow: 1; }
+.form__field-wrapper {
+  width: 0%;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  margin-right: 3rem;
+  animation: showField 1s forwards; }
+
+.form__field--message {
+  width: 100%;
+  min-width: 200px;
+  margin-right: 0; }
+
+@media (orientation: portrait) {
+  .form__button {
+    position: relative;
+    flex: none;
+    padding: 0;
+    width: 4rem;
+    height: 4rem;
+    font-size: 0; } }
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .form__button {
+    position: relative;
+    flex: none;
+    padding: 0;
+    width: 6rem;
+    height: 6rem;
+    font-size: 0; } }
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .form__button {
+    width: 4rem;
+    height: 4rem; } }
+
+.form__button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 1.6rem;
+  height: 1.8rem; }
+  @media (min-width: 2000px) {
+    .form__button svg {
+      width: 16px;
+      height: 18px; } }
   @media (orientation: portrait) {
-    .form__button {
-      position: relative;
-      flex: none;
-      padding: 0;
-      width: 4rem;
-      height: 4rem;
-      font-size: 0; } }
+    .form__button svg {
+      display: block; } }
   @media (max-width: 1024px) and (orientation: landscape) {
-    .form__button {
-      position: relative;
-      flex: none;
-      padding: 0;
-      width: 6rem;
-      height: 6rem;
-      font-size: 0; } }
-  @media (max-width: 768px) and (orientation: landscape) {
-    .form__button {
-      width: 4rem;
-      height: 4rem; } }
-  .form__button svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    width: 1.6rem;
-    height: 1.8rem; }
-    @media (min-width: 2000px) {
-      .form__button svg {
-        width: 16px;
-        height: 18px; } }
-    @media (orientation: portrait) {
-      .form__button svg {
-        display: block; } }
-    @media (max-width: 1024px) and (orientation: landscape) {
-      .form__button svg {
-        display: block; } }
+    .form__button svg {
+      display: block; } }
 
 .form--result .form__field {
   width: calc(100% - 31rem); }
@@ -1415,11 +1428,9 @@ img {
 
 @keyframes showField {
   from {
-    transform: translateX(3em);
-    opacity: 0; }
+    width: 0%; }
   to {
-    transform: translateX(0);
-    opacity: 1; } }
+    width: 100%; } }
 
 .game {
   flex-grow: 1;
@@ -1872,10 +1883,10 @@ img {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 0;
       height: 2px;
       background-color: #ffffff;
-      left: 0;
+      right: 0;
+      width: 0;
       transition: width 0.3s; }
       @media (max-width: 1024px) and (orientation: portrait) {
         .page-header__menu a::after {
@@ -1894,6 +1905,7 @@ img {
       outline: none; }
       .page-header__menu a:hover::after, .page-header__menu a:focus::after {
         opacity: 1;
+        left: 0;
         background-color: #a67ee5;
         width: 100%; }
 
