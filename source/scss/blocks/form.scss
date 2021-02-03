@@ -1,6 +1,7 @@
 .form {
   position: relative;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -34,7 +35,6 @@
   margin-right: 3rem;
   padding: 0 5.6rem;
   height: 6rem;
-  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -43,7 +43,6 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: showField 1s forwards;
 
   &:focus {
     border: 1px solid $c-purple;
@@ -79,9 +78,22 @@
   }
 }
 
-.form__button {
-  flex-grow: 1;
+.form__field-wrapper {
+  width: 0%;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  margin-right: 3rem;
+  animation: showField 1s forwards;
+}
 
+.form__field--message {
+  width: 100%;
+  min-width: 200px;
+  margin-right: 0;
+}
+
+.form__button {
   @media (orientation: portrait) {
     position: relative;
     flex: none;
@@ -150,12 +162,10 @@
 
 @keyframes showField {
   from {
-    transform: translateX(3em);
-    opacity: 0;
+    width: 0%;
   }
 
   to {
-    transform: translateX(0);
-    opacity: 1;
+    width: 100%;
   }
 }

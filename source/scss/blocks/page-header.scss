@@ -247,10 +247,10 @@
       content: "";
       position: absolute;
       bottom: 0;
-      width: 0;
       height: 2px;
       background-color: $c-light;
-      left: 0;
+      right: 0;
+      width: 0;
       transition: width 0.3s;
 
       @media (max-width: $tablet) and (orientation: portrait) {
@@ -279,6 +279,7 @@
 
       &::after {
         opacity: 1;
+        left: 0;
         background-color: $c-purple;
         width: 100%;
       }
