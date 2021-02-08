@@ -31,6 +31,8 @@ $timing-function-2:  cubic-bezier(0, 0.65, 0.85, 0.85);
   }
 
   .page-header__menu a.active::after {
+    left: 0;
+    right: auto;
     width: 100%;
   }
 }
