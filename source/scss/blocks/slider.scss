@@ -19,7 +19,7 @@
 
 .swiper-slide-active,
 .swiper-slide-next {
-  animation: showSlide 1s forwards;
+  animation: show 1s forwards;
 }
 
 .slider__item {
@@ -283,15 +283,5 @@
       height: 0.4rem;
       background-color: $c-light;
     }
-  }
-}
-
-@keyframes showSlide {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }

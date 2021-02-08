@@ -1,0 +1,36 @@
+$timing-function-1:  cubic-bezier(0, 0.95, 0.75, 1.25);
+$timing-function-2:  cubic-bezier(0, 0.65, 0.85, 0.85);
+
+.body-loaded {
+  .page-header__logo,
+  .page-header__nav {
+    animation-name: show, slide12px;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $timing-function-2;
+  }
+
+  .page-header__nav {
+    animation-delay: 0.1s;
+  }
+
+  .screen__footer {
+    animation-name: fullUp;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $timing-function-2;
+  }
+
+  .social-block__toggler {
+    animation: show 0s 0.3s forwards;
+  }
+
+  .social-block__toggler::before {
+    animation: scaleCenter 0.3s 0.3s forwards;
+    animation-timing-function: $timing-function-1;
+  }
+
+  .page-header__menu a.active::after {
+    width: 100%;
+  }
+}
