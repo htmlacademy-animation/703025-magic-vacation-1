@@ -1887,7 +1887,8 @@ img {
       bottom: 0;
       height: 2px;
       background-color: #ffffff;
-      left: 0;
+      right: 0;
+      width: 0;
       transition: width 0.35s; }
       @media (max-width: 1024px) and (orientation: portrait) {
         .page-header__menu a::after {
@@ -1904,8 +1905,9 @@ img {
       outline: none; }
       .page-header__menu a:hover::after, .page-header__menu a:focus::after {
         opacity: 1;
-        left: 0;
         background-color: #a67ee5;
+        left: 0;
+        right: auto;
         width: 100%; }
 
 .page-header__social {
@@ -3374,6 +3376,8 @@ img {
   animation-timing-function: cubic-bezier(0, 0.95, 0.75, 1.25); }
 
 .body-loaded .page-header__menu a.active::after {
+  left: 0;
+  right: auto;
   width: 100%; }
 
 @keyframes show {
