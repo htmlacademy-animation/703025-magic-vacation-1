@@ -35,6 +35,7 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  opacity: 0;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -130,6 +131,7 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  opacity: 0;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -251,7 +253,7 @@
       background-color: $c-light;
       right: 0;
       width: 0;
-      transition: width 0.3s;
+      transition: width 0.35s;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -266,12 +268,6 @@
       }
     }
 
-    &.active {
-      &::after {
-        width: 100%;
-      }
-    }
-
     &:hover,
     &:focus {
       color: $c-purple;
@@ -279,8 +275,9 @@
 
       &::after {
         opacity: 1;
-        left: 0;
         background-color: $c-purple;
+        left: 0;
+        right: auto;
         width: 100%;
       }
     }

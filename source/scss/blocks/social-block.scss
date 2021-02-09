@@ -20,7 +20,7 @@
     }
 
     .social-block__link {
-      animation-name: showIcon;
+      animation-name: show;
       animation-fill-mode: forwards;
       animation-duration: 0.2s;
     }
@@ -36,6 +36,7 @@
   color: $c-dark;
   border-radius: 50%;
   transition: all 0.3s;
+  opacity: 0;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -261,15 +262,5 @@
         height: 10px;
       }
     }
-  }
-}
-
-@keyframes showIcon {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }
