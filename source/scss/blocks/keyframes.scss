@@ -50,3 +50,24 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+
+@keyframes showPrizesAnimationBlock {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes prizesAnimationBlockHide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
