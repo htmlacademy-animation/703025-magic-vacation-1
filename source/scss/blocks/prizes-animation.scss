@@ -1,0 +1,17 @@
+.prizes-animation-block {
+  position: fixed;
+  background-color: $c-dark;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.prizes-animation-block--show {
+  animation: showPrizesAnimationBlock ease 0.5s forwards;
+}
+
+.prizes-animation-block--hide {
+  height: 100%;
+  animation: prizesAnimationBlockHide ease 0.3s forwards;
+}

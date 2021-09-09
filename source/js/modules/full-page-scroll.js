@@ -6,17 +6,20 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
-
+    this.prizesAnimationBlock = document.getElementById(`js-prizes-animation-block`);
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
-    this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+    this.onUrlHashChangedHandler = this.onUrlHashChanged.bind(this);
+    this.animatePageBg = this.animatePageBg.bind(this);
+    this.currentScreen = null;
   }
 
   init() {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
-    window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
+    window.addEventListener(`popstate`, this.onUrlHashChangedHandler);
 
     this.onUrlHashChanged();
+    this.prizesAnimationBlock.addEventListener(`animationend`, this.animatePageBg);
   }
 
   onScroll(evt) {
@@ -30,16 +33,36 @@ export default class FullPageScroll {
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    this.changePageDisplay();
+    const prevScreen = this.currentScreen;
+    this.currentScreen = this.screenElements[newIndex] ? this.screenElements[newIndex].id : null;
+    this.changePageDisplay(prevScreen);
   }
 
-  changePageDisplay() {
-    this.changeVisibilityDisplay();
+  changePageDisplay(prevScreen) {
+    const shouldAnimatePrizes = Boolean(prevScreen === `story` && this.currentScreen === `prizes`);
+    this.changeVisibilityDisplay(shouldAnimatePrizes);
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
   }
 
-  changeVisibilityDisplay() {
+  changeVisibilityDisplay(shouldAnimatePrizes) {
+    if (shouldAnimatePrizes) {
+      this.prizesAnimationBlock.classList.add(`prizes-animation-block--show`);
+    } else {
+      this.toggleScreens();
+    }
+  }
+
+  animatePageBg(evt) {
+    if (evt.animationName === `showPrizesAnimationBlock`) {
+      this.prizesAnimationBlock.classList.add(`prizes-animation-block--hide`);
+      this.toggleScreens();
+    } else {
+      this.prizesAnimationBlock.classList.remove(`prizes-animation-block--show`, `prizes-animation-block--hide`);
+    }
+  }
+
+  toggleScreens() {
     this.screenElements.forEach((screen) => {
       screen.classList.add(`screen--hidden`);
       screen.classList.remove(`active`);
