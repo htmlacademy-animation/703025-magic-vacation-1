@@ -71,3 +71,50 @@
     opacity: 0;
   }
 }
+
+
+@keyframes showBullets {
+  from {
+    transform: scale(0);
+    color: rgba($color: #ffffff, $alpha: 0);
+  }
+
+  to {
+    transform: scale(1);
+    color: rgba($color: #ffffff, $alpha: 1);
+  }
+}
+
+@keyframes slideListText {
+  from {
+    transform: translateX(30px);
+    color: rgba($color: #ffffff, $alpha: 0);
+  }
+
+  to {
+    transform: translateX(0);
+    color: rgba($color: #ffffff, $alpha: 1);
+  }
+}
+
+@keyframes showRulesBtn {
+  0% {
+    color: rgba($color: $c-dark, $alpha: 0);
+    opacity: 0;
+    max-width: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    color: rgba($color: $c-dark, $alpha: 0);
+  }
+
+  100% {
+    color: rgba($color: $c-dark, $alpha: 1);
+    max-width: var(--maxWidth);
+    opacity: 1;
+  }
+}
