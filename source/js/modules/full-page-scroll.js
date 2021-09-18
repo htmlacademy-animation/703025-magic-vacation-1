@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import splitStringToSpan from '../utils/splitStringToSpan';
 
 export default class FullPageScroll {
   constructor() {
@@ -7,7 +8,7 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
     this.prizesAnimationBlock = document.getElementById(`js-prizes-animation-block`);
-    this.gameBtn = document.getElementById(`js-game-btn`);
+    this.titlesShouldBeSplit = document.querySelectorAll(`.js-animate-split-text`);
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChangedHandler = this.onUrlHashChanged.bind(this);
@@ -16,6 +17,7 @@ export default class FullPageScroll {
   }
 
   init() {
+    this.titlesShouldBeSplit.forEach(splitStringToSpan);
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChangedHandler);
 
@@ -44,9 +46,6 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay(shouldAnimatePrizes);
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
-    if (this.currentScreen === `rules`) {
-      this.animateGameBtn();
-    }
   }
 
   changeVisibilityDisplay(shouldAnimatePrizes) {
@@ -101,14 +100,5 @@ export default class FullPageScroll {
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
-  }
-
-  handleAnimateGameBtn(evt) {
-    evt.target.classList.remove(`rules__link--animate`);
-  }
-
-  animateGameBtn() {
-    this.gameBtn.classList.add(`rules__link--animate`);
-    this.gameBtn.addEventListener(`animationend`, this.handleAnimateGameBtn);
   }
 }

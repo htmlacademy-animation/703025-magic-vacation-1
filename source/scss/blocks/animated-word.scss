@@ -1,0 +1,20 @@
+.animated-word {
+  display: inline-flex;
+  overflow: hidden;
+  padding-top: 0.2em;
+  margin-top: -0.2em;
+  padding-right: 0.2rem;
+}
+
+.animated-word--space {
+  padding-right: 0;
+  width: 0.15em;
+}
+
+.animated-word__symbol {
+  transform: translate3d(0, 1.2em, 0);
+  animation-name: fadeUpSymbol;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+  animation-duration: 0.6s;
+}
