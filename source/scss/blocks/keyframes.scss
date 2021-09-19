@@ -118,3 +118,178 @@
     opacity: 1;
   }
 }
+
+@keyframes fadeUpSymbol {
+  from {
+    transform: translate3d(0, 1.2em, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes showSuitcase {
+  from {
+    transform: translate(-80%, 60%) scale(0);
+  }
+
+  to {
+    transform: translate(-60%, 0%) scale(1);
+  }
+}
+
+@keyframes showFlamingo {
+  from {
+    opacity: 0;
+    transform: translate(-92%, 50%) rotate(-30deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-92%, 0) rotate(0);
+  }
+}
+
+@keyframes levitateFlamingo {
+  from {
+    transform: translate(-92%, 0%) rotate(0deg);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-92%, 3%) rotate(-5deg);
+  }
+}
+
+@keyframes showLeafBlue1 {
+  0% {
+    transform: rotate(-30deg) translateX(0%);
+    opacity: 0;
+  }
+
+  20% {
+    transform: rotate(9deg) translateX(0%);
+    opacity: 1;
+  }
+
+  40% {
+    transform: rotate(-6deg) translateX(0%);
+  }
+
+  55% {
+    transform: rotate(3deg) translateX(0%);
+  }
+
+  70% {
+    transform: rotate(-2deg) translateX(0%);
+  }
+
+  85% {
+    transform: rotate(2deg) translateX(0%);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes showLeafBlue2 {
+  0% {
+    transform: translateX(-123%) rotate(79deg);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateX(-123%) rotate(-12deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translateX(-123%) rotate(8deg);
+  }
+
+  55% {
+    transform: translateX(-123%) rotate(-6deg);
+  }
+
+  70% {
+    transform: translateX(-123%) rotate(4deg);
+  }
+
+  85% {
+    transform: translateX(-123%) rotate(-2deg);
+  }
+
+  100% {
+    transform: translateX(-123%) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes showLeafGreen {
+  0% {
+    transform: translateX(-11%) rotate(-40deg);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateX(-11%) rotate(9deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translateX(-11%) rotate(-6deg);
+  }
+
+  55% {
+    transform: translateX(-11%) rotate(3deg);
+  }
+
+  70% {
+    transform: translateX(-11%) rotate(-2deg);
+  }
+
+  85% {
+    transform: translateX(-11%) rotate(2deg);
+  }
+
+  100% {
+    transform: translateX(-11%) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes resultBtnCase2 {
+  0% {
+    opacity: 0;
+    color: transparent;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    color: $c-dark;
+  }
+}
+
+
+@keyframes showFormResultField {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    width: var(--width);
+  }
+}

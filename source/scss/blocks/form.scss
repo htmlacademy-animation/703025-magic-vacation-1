@@ -140,22 +140,24 @@
 
 .form--result {
   .form__field {
-    width: calc(100% - 31rem);
+    --width: calc(100% - 31rem);
+    width: var(--width);
+    animation: showFormResultField 0.8s 2s backwards;
 
     @media (min-width: $stop-scaling) {
-      width: calc(100% - 310px);
+      --width: calc(100% - 310px);
     }
 
     @media (orientation: portrait) {
-      width: calc(100% - 5rem);
+      --width: calc(100% - 5rem);
     }
 
     @media (max-width: $tablet) and (orientation: landscape) {
-      width: calc(100% - 9rem);
+      --width: calc(100% - 9rem);
     }
 
     @media (max-width: $mobile) and (orientation: landscape) {
-      width: calc(100% - 5rem);
+      --width: calc(100% - 5rem);
     }
   }
 }
