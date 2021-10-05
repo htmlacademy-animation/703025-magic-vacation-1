@@ -293,3 +293,13 @@
     width: var(--width);
   }
 }
+
+@keyframes showPaginationBtns {
+  from {
+    transform: translateX(var(--x)) rotateZ(var(--deg));
+  }
+
+  to {
+    transform: translateX(0) rotateZ(0deg);
+  }
+}

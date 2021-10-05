@@ -230,6 +230,28 @@
   }
 }
 
+.screen--story.active {
+  .slider__controls,
+  .slider__pagination {
+    animation: show 0.6s 0.3s backwards;
+  }
+
+  .slider__control {
+    animation: showPaginationBtns 1s 0.3s backwards;
+    transform-origin: center center;
+  }
+}
+
+.slider__control--prev {
+  --deg: -360deg;
+  --x: -66px;
+}
+
+.slider__control--next {
+  --deg: 360deg;
+  --x: 66px;
+}
+
 .slider__pagination.swiper-pagination {
   position: absolute;
   bottom: 2.8rem;
