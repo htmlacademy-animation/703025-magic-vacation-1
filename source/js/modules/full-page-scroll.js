@@ -1,6 +1,10 @@
 import throttle from 'lodash/throttle';
 import splitStringToSpan from '../utils/splitStringToSpan';
 
+const ANIMATE_PRISES_BLOCK = `ANIMATE_PRISES_BLOCK`;
+const TOGGLE_FOOTNOTE = `TOGGLE_FOOTNOTE`;
+const CLEANUP_FOOTNOTE = `CLEANUP_FOOTNOTE`;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
@@ -27,9 +31,10 @@ export default class FullPageScroll {
 
   onScroll(evt) {
     const currentPosition = this.activeScreen;
+    const prevScreen = this.screenElements[this.activeScreen] ? this.screenElements[this.activeScreen].id : null;
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
-      this.changePageDisplay();
+      this.changePageDisplay(prevScreen);
     }
   }
 
@@ -42,17 +47,40 @@ export default class FullPageScroll {
   }
 
   changePageDisplay(prevScreen) {
-    const shouldAnimatePrizes = Boolean(prevScreen === `story` && this.currentScreen === `prizes`);
-    this.changeVisibilityDisplay(shouldAnimatePrizes);
+    let action;
+    switch (true) {
+      case Boolean(prevScreen === `story` && this.currentScreen === `prizes`):
+        action = ANIMATE_PRISES_BLOCK;
+        break;
+      case Boolean([`rules`, `prizes`].indexOf(prevScreen) >= 0 && [`rules`, `prizes`].indexOf(this.currentScreen) >= 0):
+        action = TOGGLE_FOOTNOTE;
+        break;
+      case prevScreen === `prizes`:
+        action = CLEANUP_FOOTNOTE;
+        break;
+      default:
+        break;
+    }
+    this.changeVisibilityDisplay(action, prevScreen, this.currentScreen);
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
   }
 
-  changeVisibilityDisplay(shouldAnimatePrizes) {
-    if (shouldAnimatePrizes) {
-      this.prizesAnimationBlock.classList.add(`prizes-animation-block--show`);
-    } else {
-      this.toggleScreens();
+  changeVisibilityDisplay(action, prevScreen, currentScreen) {
+    switch (true) {
+      case action === ANIMATE_PRISES_BLOCK:
+        this.prizesAnimationBlock.classList.add(`prizes-animation-block--show`);
+        break;
+      case action === TOGGLE_FOOTNOTE:
+        this.toggleFootnote(prevScreen, currentScreen);
+        break;
+      case action === CLEANUP_FOOTNOTE:
+        this.cleanUpFootnote(prevScreen);
+        this.toggleScreens();
+        break;
+      default:
+        this.toggleScreens();
+        break;
     }
   }
 
@@ -94,11 +122,36 @@ export default class FullPageScroll {
     document.body.dispatchEvent(event);
   }
 
+  toggleFootnote(prevScreen, currentScreen) {
+    const currentFootnote = document.getElementById(`${prevScreen}-footnote`);
+    const nextFootnote = document.getElementById(`${currentScreen}-footnote`);
+
+    currentFootnote.addEventListener(`animationend`, () => {
+      currentFootnote.classList.add(`d-none`);
+      nextFootnote.classList.add(`d-block`);
+    }, {once: true});
+
+    nextFootnote.addEventListener(`animationend`, () => {
+      this.toggleScreens();
+      currentFootnote.classList.remove(`hide-child`, `d-none`);
+      nextFootnote.classList.remove(`show-child`, `d-block`);
+    }, {once: true});
+
+    currentFootnote.classList.add(`hide-child`);
+    nextFootnote.classList.add(`show-child`, `no-animation-transform`);
+  }
+
+  cleanUpFootnote(prevScreen) {
+    const currentFootnote = document.getElementById(`${prevScreen}-footnote`);
+    currentFootnote.classList.remove(`hide-child`, `d-none`, `no-animation-transform`);
+  }
+
   reCalculateActiveScreenPosition(delta) {
     if (delta > 0) {
       this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
+    this.currentScreen = this.screenElements[this.activeScreen] ? this.screenElements[this.activeScreen].id : null;
   }
 }

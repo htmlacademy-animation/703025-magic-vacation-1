@@ -1,17 +1,14 @@
 .disclaimer {
   color: $c-dark;
-  background-color: $c-light;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     font-weight: 400;
     color: $c-light;
-    background-color: transparent;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     font-weight: 400;
     color: $c-light;
-    background-color: transparent;
   }
 
   ul {

@@ -280,12 +280,12 @@
 
     &:hover,
     &:focus {
-      color: $c-purple;
+      color: var(--headerBtnHoverColor);
       outline: none;
 
       &::after {
         opacity: 1;
-        background-color: $c-purple;
+        background-color: var(--headerBtnHoverColor);
         left: 0;
         right: auto;
         width: 100%;

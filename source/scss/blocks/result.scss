@@ -105,6 +105,7 @@
 
 .result__button {
   @include btn-reset;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,6 +140,11 @@
     width: 100%;
     min-width: auto;
     font-size: 1.6rem;
+  }
+
+  &:hover span {
+    transition: transform 0.8s;
+    transform: rotateZ(-360deg);
   }
 
   span {
@@ -205,6 +211,19 @@
       height: 100%;
       background-color: $c-purple;
       border-color: $c-purple;
+    }
+  }
+}
+
+.screen--result.screen--show {
+  .result__button {
+    animation: show 0.3s 0.3s backwards;
+
+    span {
+      --x: 66px;
+      --deg: 360deg;
+      animation: showPaginationBtns 1s 0.3s backwards;
+      transform-origin: center center;
     }
   }
 }

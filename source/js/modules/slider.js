@@ -1,8 +1,27 @@
 import Swiper from "swiper";
+import bodyThemeController from './body-theme-controller';
+
+const sliderContainer = document.getElementById(`story`);
+
+const observerUpdateHandler = (evt, {activeIndex}) => {
+  if (
+    evt.target.id === `story` &&
+    evt.target.classList.contains(`active`) &&
+    ([`class`, `style`].indexOf(evt.attributeName) >= 0)
+  ) {
+    bodyThemeController.setThemeClass(activeIndex);
+  }
+  if (
+    evt.target.id === `story` &&
+    !evt.target.classList.contains(`active`) &&
+    ([`class`, `style`].indexOf(evt.attributeName) >= 0)
+  ) {
+    bodyThemeController.reset(activeIndex);
+  }
+};
 
 export default () => {
   let storySlider;
-  let sliderContainer = document.getElementById(`story`);
   sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
 
   const setSlider = function () {
@@ -29,7 +48,8 @@ export default () => {
           },
           resize: () => {
             storySlider.update();
-          }
+          },
+          observerUpdate: (evt) => observerUpdateHandler(evt, storySlider),
         },
         observer: true,
         observeParents: true
@@ -63,7 +83,8 @@ export default () => {
           },
           resize: () => {
             storySlider.update();
-          }
+          },
+          observerUpdate: (evt) => observerUpdateHandler(evt, storySlider),
         },
         observer: true,
         observeParents: true

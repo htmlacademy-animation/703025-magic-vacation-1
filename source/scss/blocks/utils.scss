@@ -1,0 +1,24 @@
+.hide-child * {
+  animation: hide 0.3s backwards;
+}
+
+.show-child * {
+  animation: show 0.3s backwards;
+}
+
+.no-animation-transform {
+  // stylelint-disable-next-line declaration-no-important
+  animation: none !important;
+  // stylelint-disable-next-line declaration-no-important
+  transform: none !important;
+}
+
+.d-block {
+  // stylelint-disable-next-line declaration-no-important
+  display: block !important;
+}
+
+.d-none {
+  // stylelint-disable-next-line declaration-no-important
+  display: none !important;
+}
