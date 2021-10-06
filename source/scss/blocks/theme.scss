@@ -1,0 +1,39 @@
+body {
+  --headerBtnActiveColor: #{$c-purple};
+  --headerBtnHoverColor: #{$c-purple};
+  --headerBtnColor: #{$c-dark};
+  --headerLinkActive: #{$c-purple};
+  --sliderBtn: #{$c-purple};
+  --sliderBtnHover: #{$c-purple};
+  --sliderBtnActive: #{$c-purple};
+}
+
+.theme-default {
+  --headerBtnActiveColor: #{$c-dark};
+  --headerBtnHoverColor: #{$c-dark};
+  --headerBtnColor: #{$c-purple};
+  --headerLinkActive: #{$c-purple};
+  --sliderBtn: #{$c-dark};
+  --sliderBtnHover: #{$c-purple};
+  --sliderBtnActive: #{$c-purple};
+}
+
+.theme-lightblue {
+  --headerBtnActiveColor: #{$c-lightblue};
+  --headerBtnHoverColor: #{$c-lightblue};
+  --headerBtnColor: #{$c-blue};
+  --headerLinkActive: #{$c-lightblue};
+  --sliderBtn: #{$c-blue};
+  --sliderBtnHover: #{$c-lightblue};
+  --sliderBtnActive: #{$c-lightblue};
+}
+
+.theme-blue {
+  --headerBtnActiveColor: #{$c-blue};
+  --headerBtnHoverColor: #{$c-blue};
+  --headerBtnColor: #{$c-lightblue};
+  --headerLinkActive: #{$c-blue};
+  --sliderBtn: #{$c-lightblue};
+  --sliderBtnHover: #{$c-blue};
+  --sliderBtnActive: #{$c-blue};
+}

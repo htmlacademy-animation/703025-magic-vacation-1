@@ -13,7 +13,8 @@
     animation-delay: 0.3s;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     .social-block__list {
       opacity: 1;
       pointer-events: auto;
@@ -33,7 +34,7 @@
   display: block;
   width: 4rem;
   height: 4rem;
-  color: $c-dark;
+  color: var(--headerBtnColor);
   border-radius: 50%;
   transition: all 0.3s;
   opacity: 0;
@@ -67,7 +68,7 @@
 
   &:hover,
   .social-block--active & {
-    color: $c-purple;
+    color: var(--headerBtnHoverColor);
 
     &::before {
       width: 112.5%;
@@ -76,11 +77,11 @@
   }
 
   &:focus {
-    color: $c-purple;
+    color: var(--headerBtnHoverColor);
     outline: none;
 
     &::before {
-      border-color: $c-purple;
+      border-color: var(--headerBtnHoverColor);
     }
 
     & + .social-block__list {
@@ -96,8 +97,8 @@
     &::before {
       width: 100%;
       height: 100%;
-      background-color: $c-purple;
-      border-color: $c-purple;
+      background-color: var(--headerBtnActiveColor);
+      border-color: var(--headerBtnActiveColor);
     }
   }
 }
@@ -110,6 +111,10 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+
+  &:focus-within {
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -207,7 +212,7 @@
   }
 
   &:hover {
-    color: $c-purple;
+    color: var(--headerLinkActive);
   }
 
   &:focus {
