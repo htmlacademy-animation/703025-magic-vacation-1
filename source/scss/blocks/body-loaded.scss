@@ -15,6 +15,7 @@ $timing-function-2:  cubic-bezier(0, 0.65, 0.85, 0.85);
   }
 
   .screen__footer {
+    display: none;
     animation-name: fullUp;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
@@ -34,5 +35,17 @@ $timing-function-2:  cubic-bezier(0, 0.65, 0.85, 0.85);
     left: 0;
     right: auto;
     width: 100%;
+  }
+}
+
+.screen__footer,
+.screen__disclaimer {
+  z-index: 3;
+}
+
+.screen.active + {
+  .screen__footer,
+  .screen__disclaimer {
+    display: block;
   }
 }
